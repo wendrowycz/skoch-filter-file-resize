@@ -68,3 +68,8 @@ You may specify different options for the Resize Filter:
 * keepSmaller: Do not resize if the image is already smaller than the given sizes.
 * directory: Set a directory to store the thumbnail in. If nothing is given, the normal image will be overwritten.
 * adapter: The adapter to use for resizing. You may specify a string or an instance of an adapter.
+
+
+Further information
+-------------------
+You can find further information [https://github.com/taikano/skoch-filter-file-resize in the article on my blog].
