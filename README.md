@@ -3,6 +3,7 @@ Skoch_Filter_File_Resize
 
 Resize utility for the Zend Framework
 -------------------------------------
+`Skoch_Filter_File_Resize` is a utility for integrating image resizing into the Zend Framework's `Zend_Form` structure. It is implemented as a filter which you can attach to `Zend_Form_Element_File` instances.
 
 Installation
 ------------
