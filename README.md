@@ -11,6 +11,12 @@ Installation
 * Add `autoloaderNamespaces[] = "Skoch_"` to your `application.ini`
 
 
+Examples
+--------
+The folders `application` and `public` contain examples for some basic usage. The most interesting file is `application/forms/Image.php`.
+You will need to have Zend-Framework installed to run the example.
+
+
 Basic Usage
 -----------
 
