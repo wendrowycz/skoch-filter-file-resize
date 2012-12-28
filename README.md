@@ -30,6 +30,34 @@ $photo->addFilter(new Skoch_Filter_File_Resize(array(
 )));
 ```
 
+
+Multiple thumbnails
+-------------------
+Often you want to create several thumbnails in different sizes. This can be done by using a so called **filter chain** and the **directory** option of the `Skoch_Filter_File_Resize`.
+
+If you specify **directory**, the value of `setDestination()` will not be considered anymore. Thus, you have to pass the full path to the **directory** option.
+
+```php
+$filterChain = new Zend_Filter();
+// Create one big image with at most 600x300 pixel
+$filterChain->appendFilter(new Skoch_Filter_File_Resize(array(
+    'width' => 600,
+    'height' => 300,
+    'keepRatio' => true,
+)));
+// Create a medium image with at most 500x200 pixels
+$filterChain->appendFilter(new Skoch_Filter_File_Resize(array(
+    'directory' => '/var/www/skoch/upload/medium',
+    'width' => 500,
+    'height' => 200,
+    'keepRatio' => true,
+)));
+// Rename the file, of course this should not be a fixed string in real applications
+$multiResize->addFilter('Rename', 'users_upload');
+// Add the filter chain with both resize rules
+$multiResize->addFilter($filterChain);
+```
+
 Options / Arguments
 -------------------
 You may specify different options for the Resize Filter:

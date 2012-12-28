@@ -33,6 +33,31 @@ class Application_Form_Image extends Zend_Form
         
         $this->addElement($resizeRename);
         
+        
+        $multiResize = new Zend_Form_Element_File('multiResize');
+        $multiResize->setDestination('../upload');
+        $multiResize->setLabel('Multiple resizes');
+        
+        $filterChain = new Zend_Filter();
+        // Create one big image with at most 600x300 pixel
+        $filterChain->appendFilter(new Skoch_Filter_File_Resize(array(
+                'width' => 600,
+                'height' => 300,
+                'keepRatio' => true,
+        )));
+        // Create a medium image with at most 500x200 pixels
+        $filterChain->appendFilter(new Skoch_Filter_File_Resize(array(
+                'directory' => '../upload/medium',
+                'width' => 500,
+                'height' => 200,
+                'keepRatio' => true,
+        )));
+        $multiResize->addFilter('Rename', 'multi-resize');
+        $multiResize->addFilter($filterChain);
+        
+        $this->addElement($multiResize);
+        
+        
         $submit = new Zend_Form_Element_Submit('submit');
         $this->addElement($submit);
     }
@@ -41,6 +66,7 @@ class Application_Form_Image extends Zend_Form
     {
         $this->renameResize->receive();
         $this->resizeRename->receive();
+        $this->multiResize->receive();
     }
 }
 
