@@ -31,6 +31,7 @@ $photo->addFilter(new Skoch_Filter_File_Resize(array(
 )));
 ```
 
+This will scale the image to a maximum of 200px length and a maximum of 300px height. One of both sides will probably be a bit smaller, because we set **keepRatio** to `true` meaning that the aspect ratio (e.g. 3:4) shall be maintained. There also is a implicit defition of **keepSmaller** set to `true` meaning that if the image is already smaller, it shall not be enlarged (because that would lead to a lot of strange pixels).
 
 Multiple thumbnails
 -------------------
@@ -58,6 +59,9 @@ $multiResize->addFilter('Rename', 'users_upload');
 // Add the filter chain with both resize rules
 $multiResize->addFilter($filterChain);
 ```
+
+This will create two thumbnails, one of maximum 600px length and 300px height and the other of 500px length and 200px height. In each case, the aspect ratio will be kept. The smaller thumbnail will be saved to the folder `/var/www/skoch/upload/medium` while the larger one will use the default option set via Zend's `setDestination()` method.
+
 
 Options / Arguments
 -------------------
