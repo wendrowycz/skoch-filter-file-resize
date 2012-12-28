@@ -72,4 +72,4 @@ You may specify different options for the Resize Filter:
 
 Further information
 -------------------
-You can find further information [https://github.com/taikano/skoch-filter-file-resize in the article on my blog].
+You can find further information [in the article on my blog](https://github.com/taikano/skoch-filter-file-resize).
