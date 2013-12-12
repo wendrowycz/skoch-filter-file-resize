@@ -20,7 +20,7 @@ require_once 'Skoch/Filter/File/Resize/Adapter/Abstract.php';
 class Skoch_Filter_File_Resize_Adapter_Gd extends
     Skoch_Filter_File_Resize_Adapter_Abstract
 {
-    public function resize($width, $height, $keepRatio, $file, $target, $keepSmaller = true)
+    public function resize($width, $height, $keepRatio, $file, $target, $keepSmaller = true, $cropToFit = false)
     {
         list($oldWidth, $oldHeight, $type) = getimagesize($file);
  
@@ -35,8 +35,12 @@ class Skoch_Filter_File_Resize_Adapter_Gd extends
                 $source = imagecreatefromgif($file);
                 break;
         }
- 
-        if (!$keepSmaller || $oldWidth > $width || $oldHeight > $height) {
+        
+        $srcX = $srcY = 0;
+        if ($cropToFit) {
+            list($srcX, $srcY, $oldWidth, $oldHeight) = 
+                $this->_calculateSourceRectangle($oldWidth, $oldHeight, $width, $height);
+        } elseif (!$keepSmaller || $oldWidth > $width || $oldHeight > $height) {
             if ($keepRatio) {
                 list($width, $height) = $this->_calculateWidth($oldWidth, $oldHeight, $width, $height);
             }
@@ -50,7 +54,7 @@ class Skoch_Filter_File_Resize_Adapter_Gd extends
         imagealphablending($thumb, false);
         imagesavealpha($thumb, true);
  
-        imagecopyresampled($thumb, $source, 0, 0, 0, 0, $width, $height, $oldWidth, $oldHeight);
+        imagecopyresampled($thumb, $source, 0, 0, $srcX, $srcY, $width, $height, $oldWidth, $oldHeight);
  
         switch ($type) {
             case IMAGETYPE_PNG:

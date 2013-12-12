@@ -57,6 +57,20 @@ class Application_Form_Image extends Zend_Form
         
         $this->addElement($multiResize);
         
+	$renameCrop = new Zend_Form_Element_File('renameCrop');
+        $renameCrop->setDestination('../upload');
+        $renameCrop->setLabel('Rename before crop');
+        
+        $renameCrop->addFilter('Rename', 'rename-crop');
+        $renameCrop->addFilter(new Skoch_Filter_File_Resize(array(
+            'width' => 20,
+            'height' => 30,
+            'cropToFit' => true,
+            'keepRatio' => true,
+        )));
+        
+        $this->addElement($renameCrop);
+
         
         $submit = new Zend_Form_Element_Submit('submit');
         $this->addElement($submit);
@@ -67,6 +81,7 @@ class Application_Form_Image extends Zend_Form
         $this->renameResize->receive();
         $this->resizeRename->receive();
         $this->multiResize->receive();
+        $this->renameCrop->receive();
     }
 }
 
