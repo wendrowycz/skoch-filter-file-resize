@@ -71,6 +71,7 @@ You may specify different options for the Resize Filter:
 * height: The maximum height of the resized image
 * keepRatio: Keep the aspect ratio and do not resize to both width and height (usually expected).
 * keepSmaller: Do not resize if the image is already smaller than the given sizes.
+* cropToFit: If the image dimensions do not match the given image, crop off some borders
 * directory: Set a directory to store the thumbnail in. If nothing is given, the normal image will be overwritten.
 * adapter: The adapter to use for resizing. You may specify a string or an instance of an adapter.
 
