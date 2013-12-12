@@ -117,6 +117,7 @@ class Skoch_Filter_File_Resize implements Zend_Filter_Interface
         }
  
         return $this->_adapter->resize($this->_width, $this->_height,
-            $this->_keepRatio, $value, $target, $this->_keepSmaller);
+            $this->_keepRatio, $value, $target, $this->_keepSmaller,
+            $this->_cropToFit);
     }
 }
