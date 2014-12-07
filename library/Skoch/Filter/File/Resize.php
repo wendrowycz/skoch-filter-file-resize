@@ -28,6 +28,7 @@ class Skoch_Filter_File_Resize implements Zend_Filter_Interface
     protected $_keepSmaller = true;
     protected $_directory = null;
     protected $_cropToFit = false;
+    protected $_follow = false;
     protected $_adapter = 'Skoch_Filter_File_Resize_Adapter_Gd';
  
     /**
@@ -70,6 +71,9 @@ class Skoch_Filter_File_Resize implements Zend_Filter_Interface
         }
         if (isset($options['cropToFit'])) {
             $this->_cropToFit = $options['cropToFit'];
+        }
+        if (isset($options['follow'])) {
+            $this->_follow = $options['follow'];
         }
         if (isset($options['adapter'])) {
             if ($options['adapter'] instanceof Skoch_Filter_File_Resize_Adapter_Abstract) {
@@ -116,8 +120,9 @@ class Skoch_Filter_File_Resize implements Zend_Filter_Interface
             $target = $value;
         }
  
-        return $this->_adapter->resize($this->_width, $this->_height,
+        $target = $this->_adapter->resize($this->_width, $this->_height,
             $this->_keepRatio, $value, $target, $this->_keepSmaller,
             $this->_cropToFit);
+        return $this->_follow ? $target : $value;
     }
 }
