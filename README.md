@@ -79,3 +79,7 @@ You may specify different options for the Resize Filter:
 Further information
 -------------------
 You can find further information [in the article on my blog](http://eliteinformatiker.de/2011/09/02/thumbnails-upload-and-resize-images-with-zend_form_element_file/).
+
+License
+-------
+This software is licensed under the Simplified BSD License.
