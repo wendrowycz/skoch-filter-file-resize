@@ -5,7 +5,6 @@
  * 
  * @category   Skoch
  * @package    Skoch_Filter
- * @license    http://opensource.org/licenses/gpl-license.php GNU Public License
  * @author     Stefan Koch <cct@stefan-koch.name>
  */
  
