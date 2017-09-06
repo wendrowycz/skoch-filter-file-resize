@@ -7,7 +7,7 @@
     "zendframework/zendframework1": "~1"
   },
   "autoload": {
-    "psr-0": { "Skoch__": "library/" }
+    "psr-0": { "Skoch_": "library/" }
   },
   "license": "MIT",
   "include-path": ["library/"],
